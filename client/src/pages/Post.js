@@ -10,11 +10,13 @@ function Post() {
   const [newComments, setNewComments] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/posts/byId/${id}`)
+    axios.get(`http://localhost:3001/posts/byid/${id}`)
     .then((response) => {
       setPostObject(response.data);
     });
   });
+
+  
 
   useEffect(() => {
     axios.get(`http://localhost:3001/comments/${id}`)
@@ -22,6 +24,8 @@ function Post() {
       setComments(response.data);
     });
   });
+
+
 
   const addComment = () => {
     axios
@@ -36,13 +40,17 @@ function Post() {
 
   return (
     <div className="postPage">
+
       <div className="leftSide">
         <div className="post" id="individual">
+
           <div className="title"> {postObject.title} </div>
           <div className="body">{postObject.postText}</div>
           <div className="footer">{postObject.username}</div>
+
         </div>
       </div>
+
 
       <div className="rightSide">
         <div className="addCommentContainer">
@@ -59,6 +67,7 @@ function Post() {
           </button>
         </div>
 
+
         <div className="listOfComments">
           {comments.map((comment, key) => {
             return (
@@ -68,7 +77,9 @@ function Post() {
             );
           })}
         </div>
+
       </div>
+
     </div>
   );
 }

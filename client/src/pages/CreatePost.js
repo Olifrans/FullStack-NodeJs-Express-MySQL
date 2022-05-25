@@ -22,8 +22,7 @@ function CreatePost() {
       .required("Author é obrigatório, no minomo (03) caracteres"),
   });
 
-  const onSubmit = (data) => {
-   
+  const onSubmit = (data) => {   
     axios.post("http://localhost:3001/posts", data).then((response) => {
       navigate("/");
     });
