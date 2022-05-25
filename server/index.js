@@ -1,11 +1,15 @@
 const express = require("express");
 const app = express();
 
-
-app.listen(3001, ()=> {
-    console.log("Servidor rodando na porta 3001")
-})
+const db = require("./models");
 
 
 
-//`fullstack_db`
+
+
+db.sequelize.sync().then(() => {
+  app.listen(3001, () => {
+    console.log("Servidor rodando na porta 3001");
+  });
+});
+
