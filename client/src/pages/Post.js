@@ -10,22 +10,20 @@ function Post() {
   const [newComments, setNewComments] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/posts/byid/${id}`)
-    .then((response) => {
+    axios.get(`http://localhost:3001/posts/byid/${id}`).then((response) => {
       setPostObject(response.data);
     });
-  });
 
-  
-
-  useEffect(() => {
-    axios.get(`http://localhost:3001/comments/${id}`)
-    .then((response) => {
+    axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
-  });
+  }, []);
 
-
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
+  //     setComments(response.data);
+  //   });
+  // });
 
   const addComment = () => {
     axios
@@ -34,30 +32,29 @@ function Post() {
         PostId: id,
       })
       .then((response) => {
-        console.log("Comentario");
+        const commentToAdd = { commentBody: newComments };
+        setComments([...comments, commentToAdd]);
+        setNewComments("")
       });
   };
 
   return (
     <div className="postPage">
-
       <div className="leftSide">
         <div className="post" id="individual">
-
           <div className="title"> {postObject.title} </div>
           <div className="body">{postObject.postText}</div>
           <div className="footer">{postObject.username}</div>
-
         </div>
       </div>
-
 
       <div className="rightSide">
         <div className="addCommentContainer">
           <input
             type="text"
-            placeholder="Ex:Comentar este post...)"
+            placeholder="Comentar postagem..."
             autocomplete="off"
+            value={newComments}
             onChange={(event) => {
               setNewComments(event.target.value);
             }}
@@ -66,7 +63,6 @@ function Post() {
             Enviar Comentario
           </button>
         </div>
-
 
         <div className="listOfComments">
           {comments.map((comment, key) => {
@@ -77,9 +73,7 @@ function Post() {
             );
           })}
         </div>
-
       </div>
-
     </div>
   );
 }
