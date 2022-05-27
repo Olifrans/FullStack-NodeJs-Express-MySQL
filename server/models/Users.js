@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  //Associação das tabela Users e Posts
-  Users.associate = (models) => {
-    Users.hasMany(models.Posts, {
-      onDelete: "cascade",
-    });
-  };
+  // //Associação das tabela Users e Posts
+  // Users.associate = (models) => {
+  //   Users.hasMany(models.Posts, {
+  //     onDelete: "cascade",
+  //   });
+  // };
 
   return Users;
 };
