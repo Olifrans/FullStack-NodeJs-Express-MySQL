@@ -4,6 +4,7 @@
 Intalar yarn: yarn
 Intalar libs: yarn add express cors mysql2 nodemon
 Intalar libs: yarn add sequelize sequelize-cli
+Intalar libs: yarn add bcrypt
 
 ### Inicializando o sequelize
 sequelize init
