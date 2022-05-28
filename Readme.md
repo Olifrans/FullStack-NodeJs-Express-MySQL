@@ -18,6 +18,6 @@ Em seguida deletar as pastas "migrations, seeders"
 Intalar yarn: yarn
 Intalar libs: yarn add react-router-dom@6 axios formik yup
 
-Curso video abaixo no inicio:
+Curso video revisar a aula 10 erro na tela de login:
 https://www.youtube.com/watch?v=RnALCXo6U-k&list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x-nL&index=10
 

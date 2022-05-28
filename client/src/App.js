@@ -7,22 +7,39 @@ import Post from "./pages/Post";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import { AuthContext } from "./helpers/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [authState, setAuthState] = useState(false);
 
-  const [authState, setAuthState] = useState(false)
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/auth/auth", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          setAuthState(false);
+        } else {
+          setAuthState(true);
+        }
+      });
+  }, []);
 
   return (
     <div>
-      <AuthContext.Provider value={{authState, setAuthState}}>
+      <AuthContext.Provider value={{ authState, setAuthState }}>
         <BrowserRouter>
           <div className="navbar">
             <Link to="/"> Home </Link>
             <Link to="/createpost"> Criar Post </Link>
 
             {/* Manter cache de de login na memória */}
-            {!localStorage.getItem("accessToken") && (
+            {!authState && (
+              // {!localStorage.getItem("accessToken") && (
               // {!sessionStorage.getItem("accessToken") && (
               <>
                 <Link to="/login">Login</Link>
@@ -39,7 +56,7 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
 
-            <Route path="*" element={<Navigate to="/" />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
