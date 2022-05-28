@@ -41,7 +41,7 @@ body {
 .post .title {
   flex: 20%;
   border-bottom: 1px solid lightgray;
-  background-color: rgb(2, 51, 22);
+  background-color: rgb(30, 109, 62);
   display: grid;
   place-content: center;
   color: white;
@@ -59,7 +59,7 @@ body {
   display: flex;
   align-items: center;
   padding-left: 15px;
-  background-color: rgb(79, 118, 226);
+  background-color: rgb(109, 143, 237);
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

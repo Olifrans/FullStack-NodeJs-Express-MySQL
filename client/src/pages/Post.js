@@ -59,7 +59,7 @@ function Post() {
       <div className="rightSide">
         <div className="addCommentContainer">
           <input
-            type="text"
+            type="text"            
             placeholder="Comentar postagem..."
             autocomplete="off"
             value={newComments}

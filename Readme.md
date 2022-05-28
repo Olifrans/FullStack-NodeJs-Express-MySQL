@@ -19,5 +19,5 @@ Intalar yarn: yarn
 Intalar libs: yarn add react-router-dom@6 axios formik yup
 
 Curso video abaixo no inicio:
-https://www.youtube.com/watch?v=-UKPph5XU_c&list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x-nL&index=9
+https://www.youtube.com/watch?v=RnALCXo6U-k&list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x-nL&index=10
 
