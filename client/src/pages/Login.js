@@ -10,11 +10,14 @@ function Login() {
   const login = () => {
     const data = { username: username, password: password };
 
-    axios.post("http://localhost:3001/auth/login", data).then((response) => {
+    axios.post("http://localhost:3001/auth/login", data)
+    .then((response) => {
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        sessionStorage.setItem("accessToken", response.data);
+        // localStorage para manter cache de login na abertura de uma nova aba
+        localStorage.setItem("accessToken", response.data);
+        // sessionStorage.setItem("accessToken", response.data);
         navigate("/");
       }
     });

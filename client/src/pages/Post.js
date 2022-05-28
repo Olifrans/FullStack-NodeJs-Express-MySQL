@@ -30,16 +30,21 @@ function Post() {
         {
           // validateToken newComments
           headers: {
-            accessToken: sessionStorage.getItem("accessToken"),
+            // localStorage para manter cache de login
+            accessToken: localStorage.getItem("accessToken"),
+            // accessToken: sessionStorage.getItem("accessToken"),
           },
         }
       )
       .then((response) => {
         if (response.data.error) {
           console.log(response.data.error);
-          //alert(response.data.error);
+          alert(response.data.error);
         } else {
-          const commentToAdd = { commentBody: newComments };
+          const commentToAdd = {
+            commentBody: newComments,
+            username: response.data.username,
+          };
           setComments([...comments, commentToAdd]);
           setNewComments("");
         }
@@ -59,7 +64,7 @@ function Post() {
       <div className="rightSide">
         <div className="addCommentContainer">
           <input
-            type="text"            
+            type="text"
             placeholder="Comentar postagem..."
             autocomplete="off"
             value={newComments}
@@ -76,7 +81,8 @@ function Post() {
           {comments.map((comment, key) => {
             return (
               <div key={key} className="comment">
-                {comment.commentBody}
+                {comment.commentBody} {""}
+                <label>Usuário: {comment.username} </label>
               </div>
             );
           })}
