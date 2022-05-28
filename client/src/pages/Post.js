@@ -19,22 +19,30 @@ function Post() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
-  //     setComments(response.data);
-  //   });
-  // });
-
   const addComment = () => {
     axios
-      .post(`http://localhost:3001/comments`, {
-        commentBody: newComments,
-        PostId: id,
-      })
+      .post(
+        `http://localhost:3001/comments`,
+        {
+          commentBody: newComments,
+          PostId: id,
+        },
+        {
+          // validateToken newComments
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((response) => {
-        const commentToAdd = { commentBody: newComments };
-        setComments([...comments, commentToAdd]);
-        setNewComments("")
+        if (response.data.error) {
+          console.log(response.data.error);
+          //alert(response.data.error);
+        } else {
+          const commentToAdd = { commentBody: newComments };
+          setComments([...comments, commentToAdd]);
+          setNewComments("");
+        }
       });
   };
 
